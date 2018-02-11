@@ -1,0 +1,60 @@
+//
+//  PrefixHeader.pch
+//  3期-百思不得姐
+//
+//  Created by xiaomage on 15/9/1.
+//  Copyright (c) 2015年 xiaomage. All rights reserved.
+//
+
+#ifndef _________PrefixHeader_pch
+#define _________PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import "UIBarButtonItem+XMGExtension.h"
+#import "UIView+XMGExtension.h"
+#import "UIImage+XMGExtension.h"
+#import "UIImageView+XMGExtension.h"
+#import "XMGConst.h"
+#import "NSString+XMGExtension.h"
+#import "UITextField+XMGExtension.h"
+#import "NSDate+XMGExtension.h"
+
+// 日志输出
+#ifdef DEBUG // 开发阶段-DEBUG阶段:使用Log
+#define XMGLog(...) NSLog(__VA_ARGS__)
+#else // 发布阶段-上线阶段:移除Log
+#define XMGLog(...)
+#endif
+
+// 方法输出
+#define XMGLogFunc XMGLog(@"%s", __func__);
+
+// 颜色
+#define XMGARGBColor(a, r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+#define XMGColor(r, g, b) XMGARGBColor(255, (r), (g), (b))
+#define XMGGrayColor(v) XMGColor((v), (v), (v))
+#define XMGCommonBgColor XMGGrayColor(215)
+#define XMGRandomColor XMGColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+// 标签的背景颜色
+#define XMGTagBgColor XMGColor(70, 142, 243)
+
+// 弱引用
+#define XMGWeakSelf __weak typeof(self) weakSelf = self;
+
+// 将数据写到桌面的plist
+#define XMGWriteToPlist(data, filename) [data writeToFile:[NSString stringWithFormat:@"/Users/xiaomage/Desktop/%@.plist", filename] atomically:YES];
+
+// 屏幕尺寸
+#define XMGScreenH [UIScreen mainScreen].bounds.size.height
+#define XMGScreenW [UIScreen mainScreen].bounds.size.width
+
+#define BSScreenH [UIScreen mainScreen].bounds.size.height
+
+#define BSScreenW [UIScreen mainScreen].bounds.size.width
+
+#define iPhone6P (BSScreenH == 736)
+#define iPhone6 (BSScreenH == 667)
+#define iPhone5 (BSScreenH == 568)
+#define iPhone4 (BSScreenH == 480)
+
+#endif
